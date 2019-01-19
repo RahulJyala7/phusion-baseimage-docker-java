@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  dataflowservice:
+    image: dataflowservice
+    # volumes:
+    #   - //D/uploads:/app/uploads
+    container_name: dataflowservice
+    # environment:
+    #   - ImagePath=/app/uploads
+    build:
+      context: .
+      dockerfile: Dockerfile

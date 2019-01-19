@@ -1,0 +1,38 @@
+#Service for dataflow
+apiVersion: v1
+kind: Service
+metadata:
+  name: dataflowservice
+spec:
+  ports:
+    - port: 50052
+      protocol: TCP
+      targetPort: 50052
+  selector:
+    app: dataflowservice
+---
+#Deployment for dataflow
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dataflowservice
+spec:
+  selector:
+    matchLabels:
+      app: dataflowservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dataflowservice
+    spec:
+      containers:
+      - name:  dataflowservice
+        image: acidaes/dataflowservice:0.0.0.1
+        ports:
+        - containerPort: 50052
+      imagePullSecrets:
+        - name: regcred 
+
+      
+      
